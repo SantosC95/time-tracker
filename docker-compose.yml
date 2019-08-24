@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4
+    volumes:
+      - ./mongo-data:/data/db
+    ports:
+      - "27017:27017"
+
+  app:
+    container_name: time-tracker
+    volumes:
+      - ./app:/app
+    env_file: 
+      - ./app.env
+    restart: always
+    build: ./app
+    ports:
+      - "5000:5000"
+    depends_on: 
+      - mongodb
+    command: sh -c "npm start"

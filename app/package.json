@@ -1,0 +1,38 @@
+{
+  "name": "timetracker",
+  "version": "1.0.0",
+  "description": "A time tracker backend app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "$BUILD_COMMAND && $RUN_COMMAND",
+    "dev": "nodemon --exec babel-node --ext js,json src/server.js",
+    "build": "babel src --out-dir build --copy-files"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SantosC95/time-tracker.git"
+  },
+  "author": "Cristian Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SantosC95/time-tracker/issues"
+  },
+  "homepage": "https://github.com/SantosC95/time-tracker#readme",
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.10"
+  },
+  "devDependencies": {
+    "env-cmd": "^9.0.3",
+    "nodemon": "^1.19.1"
+  }
+}
