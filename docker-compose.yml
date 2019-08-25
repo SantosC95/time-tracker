@@ -2,10 +2,22 @@ version: '3'
 services:
   mongodb:
     image: mongo:4
+    container_name: mongodb
     volumes:
-      - ./mongo-data:/data/db
+      - ./mongo-data:/data/mongodb
     ports:
       - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=S4nt0s
+      - MONGO_INITDB_ROOT_PASSWORD=EGdQnKnTSe8VCv63
+
+  redis:
+    image: redis:5.0.3
+    container_name: redis
+    volumes:
+      - ./redis-data:/data
+    ports:
+      - "6379:6379"
 
   app:
     container_name: time-tracker
@@ -17,6 +29,11 @@ services:
     build: ./app
     ports:
       - "5000:5000"
+      - "9229:9229"
+    links:
+      - mongodb
+      - redis
     depends_on: 
       - mongodb
+      - redis
     command: sh -c "npm start"

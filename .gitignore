@@ -2,3 +2,4 @@ app/node_modules
 *.env
 app/package-lock.json
 mongo-data
+.vscode

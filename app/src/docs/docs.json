@@ -1,0 +1,19 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0",
+        "title": "My time tracker",
+        "description": "An API for time tracker applications"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000/api",
+            "description": "Local"
+        },
+        {
+            "url": "http://18.221.122.197:5000/api",
+            "description": "Servidor"
+        }
+    ],
+    "paths": {}
+}
