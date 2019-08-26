@@ -6,6 +6,7 @@ import { token_secret as secret } from '../../config'
 import { InvalidTokenError } from '../errors/error'
 import uuid from "uuid/v4"
 import path from "path"
+import fs from "fs-extra"
 
 /** Validate password format */
 const validatePassword = ( password ) => {
@@ -60,6 +61,10 @@ const generateS3Key = ( file ) => {
     return `users/${uuid()}/${path.basename(file.path)}`
 }
 
+/** Ensure tmp folder exists */
+const setFolders = () => {
+    return fs.ensureDir(path.join(__dirname, '../../tmp'))
+}
 
 export {
     validateEmail,
@@ -68,5 +73,6 @@ export {
     decodeAccessToken,
     sendErrorResponse,
     validatePhone,
-    generateS3Key
+    generateS3Key,
+    setFolders
 }

@@ -4,3 +4,4 @@ mongo-data
 redis-data
 .vscode
 app/dist
+app/build
