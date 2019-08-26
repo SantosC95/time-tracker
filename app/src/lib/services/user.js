@@ -55,7 +55,14 @@ export const validateCredentials = async ( credentials ) => {
     return user
 }   
 
-export const queryForUsers = async ( query, pagination, sortBy ) => {
+export const queryForUsers = async ( options ) => {
+    const { 
+        sortBy, 
+        pagination, 
+        query, 
+        requestUser: user
+    } = options
+
     let q = {}
     if (query.search) {
         q.$text = {
@@ -63,10 +70,8 @@ export const queryForUsers = async ( query, pagination, sortBy ) => {
         }
     }
 
-    if (query.userId) {
-        q._id = {
-            $in: query.userId
-        }
+    if (query.users === "me") {
+        q._id = user._id
     }
 
     const [ data, totalMatches ] = await Promise.all([
@@ -79,7 +84,7 @@ export const queryForUsers = async ( query, pagination, sortBy ) => {
                 strength: 1,
                 caseLevel: true
             })
-            .sort(sortBy || 'createdAt'),
+            .sort(sortBy || '-createdAt'),
 
         User.find(q)
             .countDocuments()

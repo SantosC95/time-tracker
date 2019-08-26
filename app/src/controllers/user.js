@@ -21,10 +21,14 @@ export const createUser = async ( req, res ) => {
 /** Get users */
 export const getUsers = async ( req, res ) => {
     try {
-        const sortBy = req.sortBy
-        const pagination = req.pagination
-        const query = req.paramsObj
-        const { data, totalMatches } = await queryForUsers(query, pagination, sortBy)
+        const options = {
+            sortBy: req.sortBy,
+            pagination: req.pagination,
+            query: req.query,
+            requestUser: req.user
+        }
+
+        const { data, totalMatches } = await queryForUsers(options)
         return res.status(200).json({
             error: false,
             data,

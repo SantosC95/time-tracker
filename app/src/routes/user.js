@@ -3,8 +3,7 @@ const router = Router();
 import { createUser, login, logout, getUsers, updateUser } from "../controllers/user"
 import uploadFile from "../lib/middlewares/multer"
 import { isActiveSession, auth } from "../lib/middlewares/auth"
-import { parsePagination, setSorting, parseQueryParams } from "../lib/middlewares/middlewares"
-import { cacheClient as cache } from "../config/redis-config"
+import { parsePagination, setSorting } from "../lib/middlewares/middlewares"
 
 /** User routes */
 router.route('/users')
@@ -15,13 +14,9 @@ router.route('/users')
         auth, 
         isActiveSession, 
         parsePagination, 
-        parseQueryParams,
         setSorting, 
-        cache.route({ expire: 5 }),
         getUsers
     )
-
-router.route('/users/me')
     /** Editar información de usuario */
     .put(auth, isActiveSession, uploadFile.single('image'), updateUser)
 

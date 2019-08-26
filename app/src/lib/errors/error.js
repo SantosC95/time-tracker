@@ -11,7 +11,7 @@ class ApplicationError extends Error {
 
 export class UserCreationError extends ApplicationError {
     constructor(message, details) {
-        super(message || 'There has been an error when creating a user', 400);
+        super(message || 'Error creating the profile', 400);
         this.details = details
     }
 }
@@ -61,3 +61,49 @@ export class MaxSessionsError extends ApplicationError {
         this.details = details
     }
 }
+
+export class ProjectCreationError extends ApplicationError {
+    constructor(message, details) {
+        super(message || 'There has been an error when creating the project', 400);
+        this.details = details
+    }
+}
+
+export class ProjectNotFoundError extends ApplicationError {
+    constructor(message) {
+        super(message || 'No project found', 404);
+    }
+}
+
+export class TaskCreationError extends ApplicationError {
+    constructor(message, details) {
+        super(message || 'There has been an error when creating the task', 400);
+        this.details = details
+    }
+}
+
+export class TaskNotFoundError extends ApplicationError {
+    constructor(message) {
+        super(message || 'No project found', 404);
+    }
+}
+
+export class RecordCreationError extends ApplicationError {
+    constructor(message, details) {
+        super(message || 'There has been an error when setting this record', 400);
+        this.details = details
+    }
+}
+
+export class NotAllowedActionError extends ApplicationError {
+    constructor(message) {
+        super(message || 'You do not have permissions over this resource', 403);
+    }
+}
+
+export class ProjectAssociationError extends ApplicationError {
+    constructor(message) {
+        super(message || 'You do not belong to this project', 403);
+    }
+}
+

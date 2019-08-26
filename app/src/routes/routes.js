@@ -1,5 +1,7 @@
 import { Router } from "express"
 import UserRoutes from "./user"
+import ProjectRoutes from "./projects"
+import TaskRoutes from "./tasks"
 const router = Router();
 
 /** Test API v1.0 */
@@ -13,6 +15,6 @@ router.get('/ping', ( req, res ) => {
 })
 
 /** Register API routes */
-router.use(UserRoutes)
+router.use(UserRoutes, ProjectRoutes, TaskRoutes)
 
 export default router

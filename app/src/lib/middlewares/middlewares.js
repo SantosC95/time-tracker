@@ -51,31 +51,6 @@ const parsePagination = ( req, res, next ) => {
     return next()
 }
 
-
-/**
- * Parse and organize query parameters
- */
-const parseQueryParams = ( req, res, next ) => {
-    let query_params = {...req.query};
-    /** Ignore pagination and sorting */
-    delete query_params.elementsperpage;
-    delete query_params.page;
-    delete query_params.sortBy;
-
-    let paramsObj = {};
-
-    Object.keys(query_params)
-        .forEach(key => {
-            const value = query_params[key].split('|');
-            paramsObj[key] = value[0] ? value : null;
-        })
-
-    if (paramsObj.search) paramsObj.search = paramsObj.search.join(" ").trim();
-
-    req.paramsObj = paramsObj;
-    next();
-}
-
 /** DDoS/Brute force attacks */
 const bruteForceShield = async ( req, res, next ) => {
     try {
@@ -92,6 +67,5 @@ const bruteForceShield = async ( req, res, next ) => {
 export {
     bruteForceShield,
     parsePagination,
-    parseQueryParams,
     setSorting
 }
