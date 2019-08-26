@@ -61,9 +61,6 @@ export const findProjectsQuery = async ( options )  => {
             .countDocuments()
     ])
 
-    // let projects = []
-    // projects = await __Promise__.map(data, d => d.getUsersAssociated(user._id))
-
     const projects = await __Promise__.map(data, async ( d ) => {
         return {
             ...d.toObject(),
