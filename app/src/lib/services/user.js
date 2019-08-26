@@ -123,7 +123,9 @@ export const updateUserData = async ( userId, data, file ) => {
         const key = generateS3Key(file)
         await saveImage(file.path, key)
         await fs.remove(file.path)
-        await deleteImage(user.img_key)
+        if (typeof user.img_key === "string") {
+            await deleteImage(user.img_key)
+        }
         user.img_key = key
     }     
 
