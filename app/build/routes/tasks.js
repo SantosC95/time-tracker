@@ -1,0 +1,35 @@
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports["default"] = void 0;var _express = require("express");
+
+var _tasks = require("../controllers/tasks");
+var _auth = require("../lib/middlewares/auth");
+var _middlewares = require("../lib/middlewares/middlewares");var router = (0, _express.Router)();
+
+/** User routes */
+router.route('/tasks')
+/** Create task */.
+post(_auth.auth, _auth.isActiveSession, _tasks.createTask)
+/** Get tasks */.
+get(
+_auth.auth,
+_auth.isActiveSession,
+_middlewares.parsePagination,
+_middlewares.setSorting,
+_tasks.listTasks);
+
+
+/**
+                    * Modify/Update Task data and states
+                    */
+router.put('/tasks/:id', _auth.auth, _auth.isActiveSession, _tasks.updateTask);
+
+/** Records services */
+router.post('/tasks/record', _auth.auth, _auth.isActiveSession, _tasks.createRecord);
+router.route('/tasks/record/:taskId')
+/** Close clock */.
+put(_auth.auth, _auth.isActiveSession, _tasks.closeRecord)
+/** Get records by task */.
+get(_auth.auth, _auth.isActiveSession, _middlewares.setSorting, _middlewares.parsePagination, _tasks.listRecordsByTask);var _default =
+
+
+router;exports["default"] = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9yb3V0ZXMvdGFza3MuanMiXSwibmFtZXMiOlsicm91dGVyIiwicm91dGUiLCJwb3N0IiwiYXV0aCIsImlzQWN0aXZlU2Vzc2lvbiIsImNyZWF0ZVRhc2siLCJnZXQiLCJwYXJzZVBhZ2luYXRpb24iLCJzZXRTb3J0aW5nIiwibGlzdFRhc2tzIiwicHV0IiwidXBkYXRlVGFzayIsImNyZWF0ZVJlY29yZCIsImNsb3NlUmVjb3JkIiwibGlzdFJlY29yZHNCeVRhc2siXSwibWFwcGluZ3MiOiJ1R0FBQTs7QUFFQTtBQUNBO0FBQ0EsNkRBSEEsSUFBTUEsTUFBTSxHQUFHLHNCQUFmOztBQUtBO0FBQ0FBLE1BQU0sQ0FBQ0MsS0FBUCxDQUFhLFFBQWI7QUFDSSxrQkFESjtBQUVLQyxJQUZMLENBRVVDLFVBRlYsRUFFZ0JDLHFCQUZoQixFQUVpQ0MsaUJBRmpDO0FBR0ksZ0JBSEo7QUFJS0MsR0FKTDtBQUtRSCxVQUxSO0FBTVFDLHFCQU5SO0FBT1FHLDRCQVBSO0FBUVFDLHVCQVJSO0FBU1FDLGdCQVRSOzs7QUFZQTs7O0FBR0FULE1BQU0sQ0FBQ1UsR0FBUCxDQUFXLFlBQVgsRUFBeUJQLFVBQXpCLEVBQStCQyxxQkFBL0IsRUFBZ0RPLGlCQUFoRDs7QUFFQTtBQUNBWCxNQUFNLENBQUNFLElBQVAsQ0FBWSxlQUFaLEVBQTZCQyxVQUE3QixFQUFtQ0MscUJBQW5DLEVBQW9EUSxtQkFBcEQ7QUFDQVosTUFBTSxDQUFDQyxLQUFQLENBQWEsdUJBQWI7QUFDSSxrQkFESjtBQUVLUyxHQUZMLENBRVNQLFVBRlQsRUFFZUMscUJBRmYsRUFFZ0NTLGtCQUZoQztBQUdJLDBCQUhKO0FBSUtQLEdBSkwsQ0FJU0gsVUFKVCxFQUllQyxxQkFKZixFQUlnQ0ksdUJBSmhDLEVBSTRDRCw0QkFKNUMsRUFJNkRPLHdCQUo3RCxFOzs7QUFPZWQsTSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFJvdXRlciB9IGZyb20gXCJleHByZXNzXCJcbmNvbnN0IHJvdXRlciA9IFJvdXRlcigpO1xuaW1wb3J0IHsgY3JlYXRlVGFzaywgdXBkYXRlVGFzaywgbGlzdFRhc2tzLCBjcmVhdGVSZWNvcmQsIGNsb3NlUmVjb3JkLCBsaXN0UmVjb3Jkc0J5VGFzayB9IGZyb20gXCIuLi9jb250cm9sbGVycy90YXNrc1wiXG5pbXBvcnQgeyBpc0FjdGl2ZVNlc3Npb24sIGF1dGggfSBmcm9tIFwiLi4vbGliL21pZGRsZXdhcmVzL2F1dGhcIlxuaW1wb3J0IHsgcGFyc2VQYWdpbmF0aW9uLCBzZXRTb3J0aW5nIH0gZnJvbSBcIi4uL2xpYi9taWRkbGV3YXJlcy9taWRkbGV3YXJlc1wiXG5cbi8qKiBVc2VyIHJvdXRlcyAqL1xucm91dGVyLnJvdXRlKCcvdGFza3MnKVxuICAgIC8qKiBDcmVhdGUgdGFzayAqL1xuICAgIC5wb3N0KGF1dGgsIGlzQWN0aXZlU2Vzc2lvbiwgY3JlYXRlVGFzaylcbiAgICAvKiogR2V0IHRhc2tzICovXG4gICAgLmdldChcbiAgICAgICAgYXV0aCwgXG4gICAgICAgIGlzQWN0aXZlU2Vzc2lvbiwgXG4gICAgICAgIHBhcnNlUGFnaW5hdGlvbiwgXG4gICAgICAgIHNldFNvcnRpbmcsIFxuICAgICAgICBsaXN0VGFza3NcbiAgICApXG5cbi8qKlxuICogTW9kaWZ5L1VwZGF0ZSBUYXNrIGRhdGEgYW5kIHN0YXRlc1xuICovXG5yb3V0ZXIucHV0KCcvdGFza3MvOmlkJywgYXV0aCwgaXNBY3RpdmVTZXNzaW9uLCB1cGRhdGVUYXNrKVxuXG4vKiogUmVjb3JkcyBzZXJ2aWNlcyAqL1xucm91dGVyLnBvc3QoJy90YXNrcy9yZWNvcmQnLCBhdXRoLCBpc0FjdGl2ZVNlc3Npb24sIGNyZWF0ZVJlY29yZClcbnJvdXRlci5yb3V0ZSgnL3Rhc2tzL3JlY29yZC86dGFza0lkJylcbiAgICAvKiogQ2xvc2UgY2xvY2sgKi9cbiAgICAucHV0KGF1dGgsIGlzQWN0aXZlU2Vzc2lvbiwgY2xvc2VSZWNvcmQpXG4gICAgLyoqIEdldCByZWNvcmRzIGJ5IHRhc2sgKi9cbiAgICAuZ2V0KGF1dGgsIGlzQWN0aXZlU2Vzc2lvbiwgc2V0U29ydGluZywgcGFyc2VQYWdpbmF0aW9uLCBsaXN0UmVjb3Jkc0J5VGFzaylcblxuXG5leHBvcnQgZGVmYXVsdCByb3V0ZXIiXX0=

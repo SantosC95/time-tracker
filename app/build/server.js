@@ -1,0 +1,11 @@
+"use strict";require("@babel/polyfill/noConflict");
+var _http = _interopRequireDefault(require("http"));
+var _app = _interopRequireDefault(require("./app"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { "default": obj };}
+
+var server = _http["default"].createServer(_app["default"]);
+server.listen(5000, function () {return console.log('Server up | Port: 5000');});
+
+/** Handle some unexpected errors */
+process.on('uncaughtException', function (error) {return console.error("Error: ".concat(error.message, " | ").concat(error.stack), error);});
+process.on('unhandledRejection', function (error) {return console.error("Error: ".concat(error.message, " | ").concat(error.stack), error);});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9zZXJ2ZXIuanMiXSwibmFtZXMiOlsic2VydmVyIiwiaHR0cFNlcnZlciIsImNyZWF0ZVNlcnZlciIsImFwcCIsImxpc3RlbiIsImNvbnNvbGUiLCJsb2ciLCJwcm9jZXNzIiwib24iLCJlcnJvciIsIm1lc3NhZ2UiLCJzdGFjayJdLCJtYXBwaW5ncyI6ImFBQUE7QUFDQTtBQUNBLG9EOztBQUVBLElBQU1BLE1BQU0sR0FBR0MsaUJBQVdDLFlBQVgsQ0FBd0JDLGVBQXhCLENBQWY7QUFDQUgsTUFBTSxDQUFDSSxNQUFQLENBQWMsSUFBZCxFQUFvQixvQkFBTUMsT0FBTyxDQUFDQyxHQUFSLENBQVksd0JBQVosQ0FBTixFQUFwQjs7QUFFQTtBQUNBQyxPQUFPLENBQUNDLEVBQVIsQ0FBVyxtQkFBWCxFQUFnQyxVQUFFQyxLQUFGLFVBQWFKLE9BQU8sQ0FBQ0ksS0FBUixrQkFBd0JBLEtBQUssQ0FBQ0MsT0FBOUIsZ0JBQTJDRCxLQUFLLENBQUNFLEtBQWpELEdBQTBERixLQUExRCxDQUFiLEVBQWhDO0FBQ0FGLE9BQU8sQ0FBQ0MsRUFBUixDQUFXLG9CQUFYLEVBQWlDLFVBQUVDLEtBQUYsVUFBYUosT0FBTyxDQUFDSSxLQUFSLGtCQUF3QkEsS0FBSyxDQUFDQyxPQUE5QixnQkFBMkNELEtBQUssQ0FBQ0UsS0FBakQsR0FBMERGLEtBQTFELENBQWIsRUFBakMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgXCJAYmFiZWwvcG9seWZpbGwvbm9Db25mbGljdFwiXG5pbXBvcnQgaHR0cFNlcnZlciBmcm9tIFwiaHR0cFwiXG5pbXBvcnQgYXBwIGZyb20gXCIuL2FwcFwiXG5cbmNvbnN0IHNlcnZlciA9IGh0dHBTZXJ2ZXIuY3JlYXRlU2VydmVyKGFwcClcbnNlcnZlci5saXN0ZW4oNTAwMCwgKCkgPT4gY29uc29sZS5sb2coJ1NlcnZlciB1cCB8IFBvcnQ6IDUwMDAnKSlcblxuLyoqIEhhbmRsZSBzb21lIHVuZXhwZWN0ZWQgZXJyb3JzICovXG5wcm9jZXNzLm9uKCd1bmNhdWdodEV4Y2VwdGlvbicsICggZXJyb3IgKSA9PiBjb25zb2xlLmVycm9yKGBFcnJvcjogJHtlcnJvci5tZXNzYWdlfSB8ICR7ZXJyb3Iuc3RhY2t9YCwgZXJyb3IpKVxucHJvY2Vzcy5vbigndW5oYW5kbGVkUmVqZWN0aW9uJywgKCBlcnJvciApID0+IGNvbnNvbGUuZXJyb3IoYEVycm9yOiAke2Vycm9yLm1lc3NhZ2V9IHwgJHtlcnJvci5zdGFja31gLCBlcnJvcikpIl19

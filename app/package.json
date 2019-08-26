@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "$BUILD_COMMAND && $RUN_COMMAND",
     "dev": "nodemon --exec babel-node --ext js,json src/server.js",
-    "build": "babel src --out-dir build --copy-files",
-    "dist": "babel src --out-dir dist --copy-files"
+    "build": "babel src --out-dir build --copy-files"
   },
   "repository": {
     "type": "git",
