@@ -1,5 +1,7 @@
+import "@babel/polyfill/noConflict"
 import httpServer from "http"
 import app from "./app"
+
 const server = httpServer.createServer(app)
 server.listen(5000, () => console.log('Server up | Port: 5000'))
 

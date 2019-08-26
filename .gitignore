@@ -4,3 +4,5 @@ app/package-lock.json
 mongo-data
 redis-data
 .vscode
+app/build
+app/dist
