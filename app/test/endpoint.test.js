@@ -284,5 +284,42 @@ describe('Tasks and Project Operations', () => {
         expect(body.records).toBeArray()
         expect(body.records).toHaveLength(body.totalMatches)
     })
+
+    test('It should return a pending record', async () => {
+        /** Create a task */
+        const { body: task } = await API
+            .post('/tasks')
+            .send({})
+            .set('Authorization', `Bearer ${TOKEN}`)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .expect('Content-Type', /json/)
+
+    
+        /** Create CLOCK Record */
+        await API
+            .post('/tasks/record')
+            .send({
+                trackingMode: "CLOCK",
+                task: task.task._id
+            })
+            .set('Authorization', `Bearer ${TOKEN}`)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .expect('Content-Type', /json/)
+
+
+        /** Look for pending records */
+        const { body: pending } = await API
+            .get('/tasks/open')
+            .set('Authorization', `Bearer ${TOKEN}`)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .expect('Content-Type', /json/)
+
+        expect(pending.error).toBe(false)
+        expect(pending.records).toBeArray()
+        expect(pending.records).toHaveLength(1)
+    })
 })
 
