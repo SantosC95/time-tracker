@@ -133,3 +133,14 @@ export const deleteTask = async ( taskId ) => {
         Records.deleteMany({ task: taskId })
     ])
 }
+
+export const getOpenClockTask = async ( userId ) => {
+    const records = await Records.find({ 
+        creator: userId,
+        trackingMode: "CLOCK",
+        end: null 
+    })
+    .populate('task', 'name state')
+
+    return records
+}

@@ -1,6 +1,7 @@
-import { saveTaskData, queryTasksToDb, editTaskData, checkTaskBelongsToUser, deleteTask } from "../lib/services/tasks"
+import { saveTaskData, queryTasksToDb, editTaskData, checkTaskBelongsToUser, deleteTask, getOpenClockTask } from "../lib/services/tasks"
 import { setNewTaskRecord, closeTaskRecord, listRecords } from "../lib/services/records"
 import { sendErrorResponse } from "../lib/utils/utils"
+import { appendFileSync } from "fs";
 
 export const createTask = async ( req, res ) => {
     try {
@@ -110,6 +111,20 @@ export const deleteTaskById = async ( req, res ) => {
         return res.status(200).json({
             error: false,
             task: deleted
+        })
+    } catch (error) {
+        sendErrorResponse(res, error)
+    }
+}
+
+/** Get opened task clocks (if they exists) */
+export const getOpenTasksByUser = async ( req, res ) => {
+    try {
+        const userId = req.user._id
+        const records = await getOpenClockTask(userId)
+        return res.status(200).json({
+            error: false,
+            records
         })
     } catch (error) {
         sendErrorResponse(res, error)

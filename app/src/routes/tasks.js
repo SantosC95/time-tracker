@@ -1,6 +1,15 @@
 import { Router } from "express"
 const router = Router();
-import { createTask, updateTask, listTasks, createRecord, closeRecord, listRecordsByTask, deleteTaskById } from "../controllers/tasks"
+import { 
+    createTask, 
+    updateTask, 
+    listTasks, 
+    createRecord, 
+    closeRecord, 
+    listRecordsByTask, 
+    deleteTaskById, 
+    getOpenTasksByUser 
+} from "../controllers/tasks"
 import { isActiveSession, auth } from "../lib/middlewares/auth"
 import { parsePagination, setSorting } from "../lib/middlewares/middlewares"
 import { cacheClient as cache } from "../config/redis-config"
@@ -33,5 +42,6 @@ router.route('/tasks/record/:taskId')
     /** Get records by task */
     .get(auth, isActiveSession, setSorting, parsePagination, cache.route({ expire: 5 }), listRecordsByTask)
 
+router.get('/tasks/open', auth, isActiveSession, getOpenTasksByUser)
 
 export default router
