@@ -17,6 +17,11 @@ mongoose.connection
         mongoose.connection.close();
     })
 
+/** TEST FEATURES */
+if (process.env.NODE_ENV === "test") {
+    connectionOptions.dbName = "test"
+}
+
 /**
  * In case Mongo container is not ready (because of credentials config)
  */
