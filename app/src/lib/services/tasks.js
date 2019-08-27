@@ -1,4 +1,5 @@
 import Tasks from "../../mongo/models/tasks"
+import Records from "../../mongo/models/records"
 import { TaskCreationError, TaskNotFoundError, NotAllowedActionError } from "../errors/error"
 import { getProjectAssociated, userBelongsToProject } from "./projects"
 import { closeTaskRecord } from "./records"
@@ -119,4 +120,16 @@ export const checkTaskBelongsToUser = async ( taskId, userId ) => {
     if (!task) {
         throw new NotAllowedActionError()
     }
+}
+
+export const deleteTask = async ( taskId ) => {
+    const task = await Tasks.findById(taskId)
+    if (!task) {
+        throw new TaskNotFoundError()
+    }
+
+    return __Promise__.all([
+        task.remove(),
+        Records.deleteMany({ task: taskId })
+    ])
 }

@@ -1,4 +1,4 @@
-import { saveTaskData, queryTasksToDb, editTaskData, checkTaskBelongsToUser } from "../lib/services/tasks"
+import { saveTaskData, queryTasksToDb, editTaskData, checkTaskBelongsToUser, deleteTask } from "../lib/services/tasks"
 import { setNewTaskRecord, closeTaskRecord, listRecords } from "../lib/services/records"
 import { sendErrorResponse } from "../lib/utils/utils"
 
@@ -95,6 +95,21 @@ export const listRecordsByTask = async ( req, res ) => {
             error: false,
             records: data,
             totalMatches
+        })
+    } catch (error) {
+        sendErrorResponse(res, error)
+    }
+}
+
+/** Delete a task and related records */
+export const deleteTaskById = async ( req, res ) => {
+    try {
+        const taskId = req.params.id
+        await checkTaskBelongsToUser(taskId, req.user._id)
+        const [ deleted ] = await deleteTask(taskId)
+        return res.status(200).json({
+            error: false,
+            task: deleted
         })
     } catch (error) {
         sendErrorResponse(res, error)
