@@ -46,7 +46,7 @@
     "mongoose-lean-virtuals": "0.4.3",
     "multer": "1.4.2",
     "rate-limiter-flexible": "1.1.1",
-    "redis": "2.8.0",
+    "redis": "3.1.1",
     "shortid": "2.2.14",
     "uuid": "3.3.3"
   },
